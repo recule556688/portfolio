@@ -23,18 +23,21 @@ Welcome to my personal portfolio website! This project showcases my skills, proj
 To run this project locally, follow these steps:
 
 1. Clone the repository:
-   ```
+
+   ```bash
    git clone https://github.com/your-username/tess-dev-portfolio.git
    cd tess-dev-portfolio
    ```
 
 2. Install dependencies:
-   ```
+
+   ```npm
    npm install
    ```
 
 3. Run the development server:
-   ```
+
+   ```npm
    npm run dev
    ```
 
@@ -76,6 +79,6 @@ This project is open source and available under the [MIT License](LICENSE).
 If you have any questions or would like to get in touch, please feel free to reach out:
 
 - GitHub: [@recule556688](https://github.com/recule556688)
-- Email: ledombre@gmail.com
+- Email: <ledombre@gmail.com>
 
 Thank you for checking out my portfolio !

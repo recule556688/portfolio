@@ -154,7 +154,9 @@ export default function Portfolio() {
           </Link>
         </nav>
       </motion.header>
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
+        {" "}
+        {/* Added pt-16 to prevent content overlap with header */}
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-br from-purple-900 via-gray-900 to-gray-800">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -223,6 +225,8 @@ export default function Portfolio() {
                       <Link
                         className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors group"
                         href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         View Project
                         <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
@@ -290,7 +294,11 @@ export default function Portfolio() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex justify-center space-x-4"
             >
-              <Link href="https://github.com/recule556688">
+              <Link
+                href="https://github.com/recule556688"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   variant="outline"
                   size="icon"
@@ -321,7 +329,7 @@ export default function Portfolio() {
         className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t border-gray-700 bg-gray-800"
       >
         <p className="text-xs text-gray-400">
-          © 2024 Karma. All rights reserved.
+          © 2023 Karma. All rights reserved.
         </p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link

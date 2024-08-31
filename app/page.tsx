@@ -82,7 +82,7 @@ const projects: Project[] = [
       "A personal portfolio website built with Next.js, Tailwind CSS, and Framer Motion. Features a responsive design, animated transitions, and showcases projects, skills, and contact information.",
     technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
     link: "https://github.com/recule556688/portfolio",
-    gif: "/placeholder.svg?height=300&width=400",
+    gif: "/tessdev.gif?height=300&width=400",
   },
   {
     title: "GlobalSort GUI",
@@ -90,15 +90,7 @@ const projects: Project[] = [
       "Python-based utility tool to organize files in directories. Offers features like sorting files by type, customizable folders, and extensions, all within a user-friendly GUI.",
     technologies: ["Python", "Pyinstaller", "PyQt"],
     link: "https://github.com/recule556688/GlobalSort_GUI",
-    gif: "/placeholder.svg?height=300&width=400",
-  },
-  {
-    title: "YouTube Downloader",
-    description:
-      "Python-based YouTube downloader using the pytube library and tkinter for the GUI. Allows users to download videos and view video information such as author, publish date, views, thumbnail, and duration.",
-    technologies: ["Python", "Pytube", "Tkinter"],
-    link: "https://github.com/recule556688/Youtube_Downloader",
-    gif: "/placeholder.svg?height=300&width=400",
+    gif: "/GlobalSort.gif?height=300&width=400",
   },
   {
     title: "VALORANT Instalocker",
@@ -106,15 +98,15 @@ const projects: Project[] = [
       "A VALORANT Instalocker with a clean GUI that automatically selects agents using the VALORANT API via valclient. Features agent selection, API error handling, and customization options for agent banners and previews.",
     technologies: ["Python", "VALORANT API", "valclient", "GUI"],
     link: "https://github.com/recule556688/VALORANT-Instalocker",
-    gif: "/placeholder.svg?height=300&width=400",
+    gif: "/valorant.gif?height=300&width=400",
   },
   {
     title: "Discord Bot Private",
     description:
       "A custom Discord bot designed to automate tasks, moderate servers, and provide entertainment features. Built using Python and the discord.py library with slash commands, Control by API of Minecraft Servers, and a lot more.",
-    technologies: ["Python", "discord.py", "API integration","Slash commands"],
+    technologies: ["Python", "discord.py", "API integration", "Slash commands"],
     link: "https://github.com/recule556688/Discord_Bot_Private",
-    gif: "/placeholder.svg?height=300&width=400",
+    gif: "/discord.gif?height=300&width=400",
   },
 ];
 

@@ -64,11 +64,32 @@ To customize this portfolio for your own use:
 
 This project is ready to be deployed on platforms like Vercel, Netlify, or GitHub Pages. Follow the deployment instructions for your chosen platform.
 
-For example, to deploy on Vercel:
+1. For example, to deploy on Vercel:
 
-1. Push your code to a GitHub repository
-2. Connect your GitHub account to Vercel
-3. Select the repository and click "Deploy"
+    1. Push your code to a GitHub repository
+    2. Connect your GitHub account to Vercel
+    3. Select the repository and click "Deploy"
+
+2. Using docker:
+
+    1. Create a directory for the project
+
+    ```bash
+    mkdir tess-dev-portfolio
+    cd tess-dev-portfolio
+    ```
+
+    2. Clone the repository
+
+    ```bash
+    git clone https://github.com/recule556688/portfolio.git
+    ```
+
+    3. Use the docker compose file to build the project
+
+    ```bash
+    docker-compose up -d
+    ```
 
 ## 📄 License
 

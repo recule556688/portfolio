@@ -17,12 +17,6 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# Tailwind CSS
-tailwind.config.js
-
-# PostCSS
-postcss.config.js
-
 # TypeScript
 *.tsbuildinfo
 

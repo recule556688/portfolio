@@ -64,32 +64,46 @@ To customize this portfolio for your own use:
 
 This project is ready to be deployed on platforms like Vercel, Netlify, or GitHub Pages. Follow the deployment instructions for your chosen platform.
 
-1. For example, to deploy on Vercel:
+### Using docker-compose
 
-    1. Push your code to a GitHub repository
-    2. Connect your GitHub account to Vercel
-    3. Select the repository and click "Deploy"
+1. Create a directory for the project
 
-2. Using docker:
+```bash
+mkdir tess-dev-portfolio
+cd tess-dev-portfolio
+```
 
-    1. Create a directory for the project
+2. Clone the repository
 
-    ```bash
-    mkdir tess-dev-portfolio
-    cd tess-dev-portfolio
-    ```
+```bash
+git clone https://github.com/recule556688/portfolio.git
+```
 
-    2. Clone the repository
+3. Use the docker compose file to build the project
 
-    ```bash
-    git clone https://github.com/recule556688/portfolio.git
-    ```
+```bash
+docker-compose up -d
+```
 
-    3. Use the docker compose file to build the project
+### For example, to deploy on Vercel
 
-    ```bash
-    docker-compose up -d
-    ```
+1. Connect your GitHub account to Vercel
+2. Select the repository and click "Deploy"
+
+### For example, to deploy on github pages
+
+1. Create a new repository on GitHub
+2. Push the project to the repository
+
+```bash
+git remote add origin
+
+git push -u origin master
+```
+
+3. Go to the repository settings on GitHub
+4. Scroll down to the "GitHub Pages" section
+5. Select the `gh-pages` branch and click "Save"
 
 ## 📄 License
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "A showcase of my work and skills",
   icons: {
     icon: "/favicon.ico",
-  },
+    },
 };
 
 export default function RootLayout({
@@ -19,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" /> {/* Add this line */}
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );

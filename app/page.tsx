@@ -10,12 +10,15 @@ import {
   Cpu,
   Send,
   Terminal,
+  ExternalLink,
 } from "lucide-react";
 import { FaPython, FaDatabase, FaGit, FaDocker, FaLinux } from "react-icons/fa";
 import { DiUbuntu } from "react-icons/di";
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import TypedComponent from "./TypedComponent";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,7 +29,21 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const skills = [
+// Define types for skills and projects
+type Skill = {
+  name: string;
+  icon: React.ElementType;
+};
+
+type Project = {
+  title: string;
+  description: string;
+  technologies: string[];
+  link: string;
+  gif: string;
+};
+
+const skills: Skill[] = [
   { name: "Python", icon: FaPython },
   { name: "Git", icon: FaGit },
   { name: "C", icon: Code },
@@ -58,31 +75,138 @@ const itemVariants = {
   },
 };
 
-export default function Portfolio() {
-  const [projects] = useState([
-    {
-      title: "GlobalSort GUI",
-      description:
-        "GlobalSort is a Python-based utility tool designed to organize files in your computer's directories. It offers features like sorting files by type, customizable folders, and extensions, all within a user-friendly GUI.",
-      technologies: "Python, Pyinstaller, PyQt",
-      link: "https://github.com/recule556688/GlobalSort_GUI",
-    },
-    {
-      title: "YouTube Downloader",
-      description:
-        "A Python-based YouTube downloader using the pytube library and tkinter for the GUI. It allows users to download videos from YouTube and view video information such as author, publish date, views, thumbnail, and duration.",
-      technologies: "Python, Pytube, Tkinter",
-      link: "https://github.com/recule556688/Youtube_Downloader",
-    },
-    {
-      title: "VALORANT Instalocker",
-      description:
-        "A VALORANT Instalocker with a clean GUI that automatically selects agents using the VALORANT API via valclient. It features agent selection, API error handling, and customization options for agent banners and previews.",
-      technologies: "Python, VALORANT API, valclient, GUI",
-      link: "https://github.com/recule556688/VALORANT-Instalocker",
-    },
-  ]);
+const projects: Project[] = [
+  {
+    title: "Tess Dev",
+    description:
+      "A personal portfolio website built with Next.js, Tailwind CSS, and Framer Motion. Features a responsive design, animated transitions, and showcases projects, skills, and contact information.",
+    technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    link: "https://github.com/recule556688/portfolio",
+    gif: "/placeholder.svg?height=300&width=400",
+  },
+  {
+    title: "GlobalSort GUI",
+    description:
+      "Python-based utility tool to organize files in directories. Offers features like sorting files by type, customizable folders, and extensions, all within a user-friendly GUI.",
+    technologies: ["Python", "Pyinstaller", "PyQt"],
+    link: "https://github.com/recule556688/GlobalSort_GUI",
+    gif: "/placeholder.svg?height=300&width=400",
+  },
+  {
+    title: "YouTube Downloader",
+    description:
+      "Python-based YouTube downloader using the pytube library and tkinter for the GUI. Allows users to download videos and view video information such as author, publish date, views, thumbnail, and duration.",
+    technologies: ["Python", "Pytube", "Tkinter"],
+    link: "https://github.com/recule556688/Youtube_Downloader",
+    gif: "/placeholder.svg?height=300&width=400",
+  },
+  {
+    title: "VALORANT Instalocker",
+    description:
+      "A VALORANT Instalocker with a clean GUI that automatically selects agents using the VALORANT API via valclient. Features agent selection, API error handling, and customization options for agent banners and previews.",
+    technologies: ["Python", "VALORANT API", "valclient", "GUI"],
+    link: "https://github.com/recule556688/VALORANT-Instalocker",
+    gif: "/placeholder.svg?height=300&width=400",
+  },
+  {
+    title: "Discord Bot Private",
+    description:
+      "A custom Discord bot designed to automate tasks, moderate servers, and provide entertainment features. Built using Python and the discord.py library with slash commands, Control by API of Minecraft Servers, and a lot more.",
+    technologies: ["Python", "discord.py", "API integration","Slash commands"],
+    link: "https://github.com/recule556688/Discord_Bot_Private",
+    gif: "/placeholder.svg?height=300&width=400",
+  },
+];
 
+// Define props type for ProjectCard
+type ProjectCardProps = {
+  project: Project;
+  isReversed: boolean;
+};
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, isReversed }) => {
+  return (
+    <motion.div
+      className="flex flex-col lg:flex-row items-center gap-12 mb-24"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Card
+        className={`w-full lg:w-1/2 bg-gray-800 border-gray-700 overflow-hidden flex flex-col shadow-lg hover:shadow-2xl transition-all duration-300 ${
+          isReversed ? "lg:order-2" : ""
+        }`}
+      >
+        <CardHeader className="bg-gradient-to-r from-purple-600 to-pink-600 p-6">
+          <CardTitle className="text-3xl font-bold text-white">
+            {project.title}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="flex-grow flex flex-col justify-between p-6">
+          <div>
+            <CardDescription className="text-gray-300 mb-6 text-lg leading-relaxed">
+              {project.description}
+            </CardDescription>
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.technologies.map((tech: string, index: number) => (
+                <span
+                  key={index}
+                  className="px-3 py-1 bg-gray-700 text-purple-300 rounded-full text-sm"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="flex justify-center mt-6">
+            <Link href={project.link} target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="outline"
+                className="flex items-center justify-center space-x-2 py-4 px-6 text-lg bg-purple-600 hover:bg-purple-700 text-white border-none transition-all duration-300 transform hover:scale-105"
+              >
+                <Github className="w-5 h-5 mr-2" />
+                View on GitHub
+              </Button>
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
+      <motion.div
+        className={`w-full lg:w-1/2 rounded-lg overflow-hidden shadow-lg ${
+          isReversed ? "lg:order-1" : ""
+        }`}
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.2 }}
+      >
+        <Image
+          src={project.gif}
+          alt={`${project.title} demonstration`}
+          width={600}
+          height={400}
+          layout="responsive"
+          style={{ objectFit: "cover" }}
+          className="rounded-lg"
+        />
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const AlternatingProjects: React.FC = () => {
+  return (
+    <div>
+      {projects.map((project, index) => (
+        <ProjectCard
+          key={project.title}
+          project={project}
+          isReversed={index % 2 !== 0}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default function Portfolio() {
   const { scrollYProgress } = useScroll();
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
@@ -155,8 +279,6 @@ export default function Portfolio() {
         </nav>
       </motion.header>
       <main className="flex-1 pt-16">
-        {" "}
-        {/* Added pt-16 to prevent content overlap with header */}
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-br from-purple-900 via-gray-900 to-gray-800">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -169,9 +291,19 @@ export default function Portfolio() {
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
                   Hi, I'm Karma
                 </h1>
+
                 <p className="mx-auto max-w-[700px] text-gray-300 md:text-xl">
-                  An Engineer student at Lyon in France , I'm beginning so be
-                  kind with me 😋.
+                  <TypedComponent
+                    strings={[
+                        "I use Arch BTW 😎.",
+                        "An Engineer student in Epitech at Lyon in France, I'm beginning so be kind with me 😋.",
+                        "I'm a passionate developer who loves to learn new things and work on exciting projects.",
+                        "I'm currently learning about web development.",
+                    ]}
+                    typeSpeed={30}
+                    backSpeed={20}
+                    loop={true}
+                  />
                 </p>
               </div>
               <div className="space-x-4">
@@ -188,54 +320,18 @@ export default function Portfolio() {
         </section>
         <section
           id="projects"
-          className="w-full py-12 md:py-24 lg:py-32 bg-gray-800"
+          className="w-full py-24 md:py-32 lg:py-48 bg-gradient-to-b from-gray-900 to-gray-800"
         >
           <div className="container px-4 md:px-6 mx-auto">
             <motion.h2
               initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-center mb-24 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
             >
-              <Briefcase className="inline-block mr-2 h-10 w-10 text-purple-400" />
-              Projects
+              My Projects
             </motion.h2>
-            <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {projects.map((project, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card className="bg-gray-700 border-gray-600 text-white h-full overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <CardHeader className="space-y-4 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 transform -skew-y-12 group-hover:skew-y-12 transition-all duration-300 opacity-20" />
-                      <CardTitle className="text-purple-400 text-2xl relative z-10">
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className="text-gray-300 relative z-10">
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="relative z-10">
-                      <p className="text-sm text-gray-400 mb-4">
-                        Technologies used: {project.technologies}
-                      </p>
-                      <Link
-                        className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors group"
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        View Project
-                        <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+            <AlternatingProjects />
           </div>
         </section>
         <section

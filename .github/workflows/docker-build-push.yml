@@ -9,7 +9,7 @@ on:
 env:
   DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
   DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-  IMAGE_NAME: your-dockerhub-username/your-image-name
+  IMAGE_NAME: getkarma/tess-dev-portfolio
 
 jobs:
   build-and-push:
